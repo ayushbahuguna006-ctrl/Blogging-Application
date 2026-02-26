@@ -1,15 +1,18 @@
 const mongoose=require('mongoose')
 const dotenv=require('dotenv')
 dotenv.config()
-const username=process.env.db_username
-const password=process.env.db_passsword
+const username=process.env.DB_USERNAME
+const password=process.env.DB_PASSWORD
 const connection=async()=>{
-    const url='mongodb+srv://ayushbahuguna:60029010@cluster0.1emtqoc.mongodb.net/?appName=Cluster0'
-    console.log('database connected succesfully')
+    const url=`mongodb+srv://${username}:${password}@cluster0.1emtqoc.mongodb.net/?appName=Cluster0`
     try{
         await mongoose.connect(url)
+         console.log('database connected succesfully')
     }catch{
         console.log('error while connecting to database')
     }
 }
+console.log("Username:", process.env.DB_USERNAME)
+console.log("Password:", process.env.DB_PASSWORD)
 module.exports=connection
+
