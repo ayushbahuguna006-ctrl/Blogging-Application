@@ -1,5 +1,7 @@
 const express=require('express')
-const register=require('../controllers/usercontroller')
+const {register,login,logout}=require('../controllers/usercontroller')
 const router=express.Router()
 router.post('/register',register)
+router.post('/login',login)
+router.get('/logout',logout)
 module.exports=router
