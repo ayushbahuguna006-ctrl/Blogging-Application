@@ -8,20 +8,30 @@ import About from './Pages/About';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Navbar from './Components/Navbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<><Navbar/><Home /></>} />
-          <Route path="/blogs" element={<><Navbar/><Blogs /></>} />
-          <Route path="/about" element={<><Navbar/><About /></>} />
-          <Route path="/login" element={<><Navbar/><Login /></>} />
-          <Route path="/signup" element={<><Navbar/><Signup /></>} />
-        </Routes>
-      </BrowserRouter>
+       <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+    <ToastContainer 
+        position="bottom-left" 
+        autoClose={3000} 
+        hideProgressBar={false} 
+        closeOnClick 
+        pauseOnHover 
+        draggable 
+      />
     </>
   )
 }

@@ -1,7 +1,9 @@
 import React, { use, useState } from 'react'
 import signup from '../assets/signup.jpg'
 import { Link, useNavigate } from "react-router-dom";
-import NotificationProvider, { useNotification } from 'use-toast-notification'
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
   const navigate=useNavigate();
@@ -26,21 +28,14 @@ function Signup() {
         },
         withCredentials:true
       })
-      if(res.data.success){
-        navigate('/login')
+       if (res.data.success) {
+        toast.success("Sign-Up Successful!");  
+        navigate('/login');
+      } else {
+        toast.error("Sign-Up failed");       
       }
-      notification.show({
-            message: 'Signed Up Succesfully', 
-            title: 'Delivery Status',
-            variant: 'success'
-        })
      } catch (error) {
       console.log(error);
-      notification.show({
-            message: 'Seems like an Error', 
-            title: 'Status',
-            variant: 'error'
-        })
      }
     
   }
