@@ -46,7 +46,7 @@ function Signup() {
           <img src={signup} alt="signup-image" className='h-dvh hidden md:block' />
         </div>
         <div>
-          <form>
+          <form onSubmit={handlesubmit}>
             <div className='bg-white flex flex-col'>
               <div className='text-center'><h1 className='text-2xl font-medium mt-5 md:mt-0'>Create an Account</h1></div>
               <div className='text-center'><h3>Enter your Details below to create your account</h3></div>
@@ -61,7 +61,7 @@ function Signup() {
                 <label><h5 className='font-bold'>Password</h5><input type="password"  onChange={handlechange} name='password' placeholder='Create a Password' className='border w-[85vw] outline-none md:w-[31.5vw] p-2 border-black rounded-xl' /></label>
               </div>
               <div className='mt-5 text-center flex flex-col'>
-                <button onClick={handlesubmit} className='bg-gradient-to-r from-indigo-500 via-purple-500 cursor-pointer to-pink-500 p-2 w-[85vw] rounded-xl text-white md:w-[30vw] font-medium'>Sign Up</button>
+                <button type='submit' className='bg-gradient-to-r from-indigo-500 via-purple-500 cursor-pointer to-pink-500 p-2 w-[85vw] rounded-xl text-white md:w-[30vw] font-medium'>Sign Up</button>
                 <span className='mt-4'>Already have an account?  <Link className='text-blue-500' to="/Login">SIGN-IN</Link></span>
               </div>
             </div>
