@@ -100,4 +100,24 @@ const logout=async (_,res)=>{
         })
     }
 }
-module.exports = {register,login,logout}
+const getme = async (req,res)=>{
+  try {
+    const token = req.cookies.token;
+
+    if(!token){
+      return res.json({success:false});
+    }
+
+    const decoded = jwt.verify(token,process.env.SECRET_KEY);
+    const user = await User.findById(decoded.userId).select("-password");
+
+    res.json({
+      success:true,
+      user
+    });
+
+  } catch {
+    res.json({success:false});
+  }
+}
+module.exports = {register,login,logout,getme}

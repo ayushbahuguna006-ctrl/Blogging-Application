@@ -27,8 +27,9 @@ function Login() {
         withCredentials:true
       })
        if (res.data.success) {
-        toast.success("Login Successful!");  
-        navigate('/');
+        console.log(res.data.user);
+        toast.success(`Welcome Back ${res.data.user.firstname} `);  
+        window.location.href = "/";
       } else {
         toast.error("Login failed");       
       }

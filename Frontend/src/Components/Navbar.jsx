@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaFeatherAlt } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -11,10 +11,31 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
-  const user = true;
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+  const checkUser = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8000/api/v1/user/me",
+        { withCredentials: true }
+      );
+
+      if (res.data.success) {
+        setUser(res.data.user);
+      } else {
+        setUser(null);
+      }
+
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  checkUser();
+}, []);
   const handlesubmit=async()=>{
      try {
-      const res=await axios.get('http://localhost:8000/api/v1/user/logout',{},{
+      const res=await axios.get('http://localhost:8000/api/v1/user/logout',{
         headers:{
           "Content-Type":"application/json"
         },
@@ -23,6 +44,7 @@ function Navbar() {
       console.log(res.data);
        if (res.data.success) {
         toast.success("Logout Successful!");
+        setUser(null)
         navigate('/');
       } else {
         toast.error("Logout failed");       

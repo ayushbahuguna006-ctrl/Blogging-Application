@@ -7,6 +7,8 @@ const userroute=require('./routes/userroute')
 const app=express();
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 app.use(cors({
      origin: "http://localhost:5173", // frontend origin
     credentials: true,  
