@@ -1,8 +1,11 @@
 const express=require('express')
-const {register,login,logout,getme}=require('../controllers/usercontroller')
+const {register,login,logout,getme,updateprofile}=require('../controllers/usercontroller')
+const isauthenticated = require('../middlewares/isauthenticated')
+const singleupload = require('../middlewares/multer')
 const router=express.Router()
 router.post('/register',register)
 router.post('/login',login)
 router.get('/logout',logout)
 router.get('/me',getme)
+router.put('/profile/update',isauthenticated,singleupload,updateprofile)
 module.exports=router

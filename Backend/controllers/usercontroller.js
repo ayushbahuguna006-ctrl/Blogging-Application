@@ -125,28 +125,37 @@ const getme = async (req,res)=>{
 const updateprofile=async(req,res)=>{
     try {
         const userId=req.id
-        const {firstname,lastname,facebook,instagram,linkedin,github,description}=req.body
+        const {firstname,lastname,facebook,instagram,linkedin,github,bio}=req.body
         const file=req.file;
-        const fileuri=getdatauri(file)
-         const uploadResult = await cloudinary.uploader.upload(fileuri)
+        let uploadResult;
+        if (file) {
+    const fileuri = getdatauri(file);
+     uploadResult = await cloudinary.uploader.upload(fileuri);
+}
          const user=await User.findById(userId).select("-password")
          if(!user){
             return res.status(404).json({
                 message:"user not found",
                 success:false
             })
-            if(firstname) user.firstname=firstname
+
+         }
+          if(firstname) user.firstname=firstname
             if(lastname) user.lastname=lastname
             if(facebook) user.facebook=facebook
             if(instagram) user.instagram=instagram
             if(linkedin) user.linkedin=linkedin
             if(github) user.github=github
-            if(bio) user.bio=bio
             if(file) user.photoUrl=uploadResult.secure_url
-
-         }
+            if (bio) user.description = bio;
+            await user.save()
+            return res.status(200).json({
+                message:"Profile Updated Sucessfully",
+                success:true,
+                user
+            })
     } catch (error) {
-        console.logh(error)
+        console.log(error)
     }
 }
-module.exports = {register,login,logout,getme}
+module.exports = {register,login,logout,getme,updateprofile}

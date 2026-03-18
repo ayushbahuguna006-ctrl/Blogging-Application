@@ -27,3 +27,4 @@ const isauthenticated=async(req,res,next)=>{
  
   
 }
+module.exports=isauthenticated;
