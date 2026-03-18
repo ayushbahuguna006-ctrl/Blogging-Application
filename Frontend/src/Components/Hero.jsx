@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Hero() {
   return (
     <>
-      <div className='flex justify-around items-center flex-wrap'>
+      <div className='flex justify-around items-center flex-wrap mt-10'>
         <div className='flex flex-col md:gap-6 gap-3 font-bold ml-2 md:text-5xl text-3xl flex-wrap'>
           <div className='mt-3 '> <h1>EXPLORE THE LATEST TECH</h1>
             <h1 className='hidden md:block'>& WEB TRENDS</h1>

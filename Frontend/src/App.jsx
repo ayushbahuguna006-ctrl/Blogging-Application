@@ -10,6 +10,10 @@ import Signup from './Pages/Signup';
 import Navbar from './Components/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Profile from './Pages/Profile';
+import Comment from './Pages/Comment';
+import CreateBlogs from './Pages/CreateBlogs';
+
 
 
 function App() {
@@ -24,6 +28,9 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/comments" element={<Comment />} />
+        <Route path="/createblogs" element={<CreateBlogs />} />
       </Routes>
     </BrowserRouter>
     <ToastContainer 
