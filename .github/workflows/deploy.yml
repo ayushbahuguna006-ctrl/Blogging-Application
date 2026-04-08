@@ -15,12 +15,14 @@ jobs:
 
       - name: Write SSH key
         run: |
-          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > key.pem
+          cat > key.pem << 'EOF'
+          ${{ secrets.EC2_SSH_KEY }}
+          EOF
           chmod 600 key.pem
 
-      - name: Test SSH connection
+      - name: Test SSH
         run: |
-          ssh -vvv -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo SSH_OK"
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo SSH_OK"
 
       - name: Deploy on EC2
         run: |
